@@ -6,7 +6,7 @@
         id        = "es.heras.geoapp"
         version   = "1.0.3">
 
-    <name>Geo app</name>
+    <name>GeoApp</name>
 
     <description>
         Aplicación de geolocalización.
