@@ -83,7 +83,7 @@ function onError(error) {
 	$("#error").html('código: '  + error.code    + '\n' +
           'mensaje: ' + error.message + '\n');
 }
-navigator.geolocation.getCurrentPosition(onSuccess, onError);
+//navigator.geolocation.getCurrentPosition(onSuccess, onError);
 		
 </script>
 
@@ -101,6 +101,7 @@ navigator.geolocation.getCurrentPosition(onSuccess, onError);
     
     <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="a"> 
         <li><a href="#basic_map">Ver mapa</a></li> 
+        <li><a id="btn">Obtener</a></li> 
     </ul>
     <span id="error">Texto:</span>
   </div>
@@ -134,3 +135,28 @@ navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
 </body>
 </html>
+<script>
+$("#btn").bind ("click", function (event)
+{
+navigator.geolocation.getCurrentPosition(onSuccess, onError);
+  var lat = $("#lat").val();
+  var lng = $("#lng").val();
+  var latlng = new google.maps.LatLng (lat, lng);
+  var options = { 
+    zoom : 15, 
+    center : latlng, 
+    mapTypeId : google.maps.MapTypeId.ROADMAP 
+  };
+  var $content = $("#win2 div:jqmData(role=content)");
+  $content.height (screen.height - 50);
+  var map = new google.maps.Map ($content[0], options);
+  //$.mobile.changePage ($("#win2"));
+  
+  new google.maps.Marker ( 
+  { 
+    map : map, 
+    animation : google.maps.Animation.DROP,
+    position : latlng  
+  });  
+});
+</script>
